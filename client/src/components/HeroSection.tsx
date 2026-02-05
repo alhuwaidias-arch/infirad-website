@@ -31,7 +31,7 @@ export default function HeroSection() {
         {/* Content */}
         <div className="space-y-8 animate-fade-in-up">
           {/* Badge */}
-          <div className="flex items-center gap-2 px-4 py-4 rounded-md bg-primary/50 border-2 border-secondary/30 text-secondary backdrop-blur-sm w-full sm:w-auto min-h-[80px] sm:min-h-0">
+          <div className="flex items-center gap-2 px-5 py-6 rounded-md bg-primary/50 border-2 border-secondary/30 text-secondary backdrop-blur-sm w-full sm:w-auto min-h-[100px] sm:min-h-0">
             <span className="ar-content text-sm sm:text-base md:text-lg lg:text-2xl font-bold tracking-normal uppercase font-display leading-relaxed break-words">
               انفِراد - شريك هندسي استراتيجي لتطوير المشاريع
             </span>
