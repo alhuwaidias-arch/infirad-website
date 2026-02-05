@@ -92,10 +92,10 @@ export default function HeroSection() {
         <div className="hidden lg:block relative animate-fade-in">
           <div className="relative bg-primary/30 ring-2 ring-secondary/20 rounded-2xl p-8 shadow-2xl overflow-hidden backdrop-blur-sm">
             <div className="aspect-square bg-primary/50 rounded-lg flex flex-col items-center justify-center overflow-hidden border-2 border-secondary/10 relative">
-              <div className="ar-content absolute top-8 text-secondary text-sm font-bold tracking-[0.2em] uppercase font-display">
+              <div className="ar-content absolute top-8 text-secondary text-lg font-bold tracking-[0.2em] uppercase font-display">
                 المحاكاة والتحليل البياني
               </div>
-              <div className="en-content absolute top-8 text-secondary text-sm font-bold tracking-[0.2em] uppercase font-display">
+              <div className="en-content absolute top-8 text-secondary text-lg font-bold tracking-[0.2em] uppercase font-display">
                 Simulation & Analytics
               </div>
 
@@ -128,10 +128,10 @@ export default function HeroSection() {
                 <circle cx="130" cy="95" r="4" fill="currentColor" className="animate-pulse" style={{ animationDelay: '2.4s' }} />
               </svg>
 
-              <div className="ar-content absolute bottom-8 px-5 py-2 border-2 border-secondary/30 rounded text-secondary text-xs md:text-sm font-bold uppercase font-display">
+              <div className="ar-content absolute bottom-8 px-5 py-2 border-2 border-secondary/30 rounded text-secondary text-base md:text-lg font-bold uppercase font-display">
                 النمذجة الرقمية
               </div>
-              <div className="en-content absolute bottom-8 px-5 py-2 border-2 border-secondary/30 rounded text-secondary text-xs md:text-sm font-bold uppercase font-display">
+              <div className="en-content absolute bottom-8 px-5 py-2 border-2 border-secondary/30 rounded text-secondary text-base md:text-lg font-bold uppercase font-display">
                 Digital Twin
               </div>
             </div>
