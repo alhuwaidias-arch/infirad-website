@@ -32,11 +32,11 @@ export default function EngagementSection() {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Consulting */}
           <div className="p-10 bg-accent border-l-4 border-secondary rounded-xl shadow-sm hover-lift transition-brutal">
-            <h3 className="text-xl font-bold text-foreground mb-4 font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 font-display">
               <span className="ar-content">التعاقدات الاستشارية</span>
               <span className="en-content">Consulting Engagements</span>
             </h3>
-            <p className="text-foreground/80 text-lg leading-relaxed">
+            <p className="text-foreground/80 text-xl md:text-2xl leading-relaxed">
               <span className="ar-content">
                 دراسات فنية وتحليلية لدعم اتخاذ القرار، التحقق من الجدوى، وتقليل المخاطر.
               </span>
@@ -48,11 +48,11 @@ export default function EngagementSection() {
           
           {/* Strategic Partnerships */}
           <div className="p-10 bg-primary border-l-4 border-secondary rounded-xl shadow-lg hover-lift transition-brutal">
-            <h3 className="text-xl font-bold text-white mb-4 font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 font-display">
               <span className="ar-content">شراكات التطوير الاستراتيجية</span>
               <span className="en-content">Strategic Partnerships</span>
             </h3>
-            <p className="text-secondary text-lg leading-relaxed">
+            <p className="text-secondary text-xl md:text-2xl leading-relaxed">
               <span className="ar-content">
                 تعمل انفِراد كعمود فقري تقني لمشروعك من مرحلة التصور وحتى الجاهزية للتنفيذ.
               </span>

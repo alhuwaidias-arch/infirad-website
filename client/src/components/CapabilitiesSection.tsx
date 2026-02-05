@@ -25,7 +25,7 @@ export default function CapabilitiesSection() {
           {/* Engineering */}
           <div className="p-8 bg-white rounded-2xl border-2 border-border hover-lift transition-brutal shadow-sm hover:shadow-lg group">
             <Cog className="w-8 h-8 text-primary mb-6 group-hover:rotate-90 transition-transform duration-500" />
-            <h3 className="text-lg font-bold text-foreground mb-4 font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 font-display">
               <span className="ar-content">الهندسة</span>
               <span className="en-content">Engineering</span>
             </h3>
@@ -42,7 +42,7 @@ export default function CapabilitiesSection() {
           {/* Tech & AI */}
           <div className="p-8 bg-white rounded-2xl border-2 border-border hover-lift transition-brutal shadow-sm hover:shadow-lg group">
             <Cpu className="w-8 h-8 text-primary mb-6 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-lg font-bold text-foreground mb-4 font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 font-display">
               <span className="ar-content">التقنية والذكاء الاصطناعي</span>
               <span className="en-content">Tech & AI</span>
             </h3>
@@ -59,7 +59,7 @@ export default function CapabilitiesSection() {
           {/* Venture Dev */}
           <div className="p-8 bg-white rounded-2xl border-2 border-border hover-lift transition-brutal shadow-sm hover:shadow-lg group">
             <Briefcase className="w-8 h-8 text-primary mb-6 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-lg font-bold text-foreground mb-4 font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 font-display">
               <span className="ar-content">تطوير الأعمال</span>
               <span className="en-content">Venture Dev</span>
             </h3>
@@ -76,7 +76,7 @@ export default function CapabilitiesSection() {
           {/* Education */}
           <div className="p-8 bg-white rounded-2xl border-2 border-border hover-lift transition-brutal shadow-sm hover:shadow-lg group">
             <GraduationCap className="w-8 h-8 text-primary mb-6 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-lg font-bold text-foreground mb-4 font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 font-display">
               <span className="ar-content">التعليم ونقل المعرفة</span>
               <span className="en-content">Education & Training</span>
             </h3>

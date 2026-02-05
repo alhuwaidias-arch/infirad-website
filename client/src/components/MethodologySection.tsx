@@ -28,11 +28,11 @@ export default function MethodologySection() {
             <span className="text-5xl font-bold text-secondary/30 block mb-6 group-hover:text-white/10 font-mono transition-colors">
               01
             </span>
-            <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-white transition-colors font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-white transition-colors font-display">
               <span className="ar-content">التصور والتحقق</span>
               <span className="en-content">Validation</span>
             </h3>
-            <p className="text-foreground/70 text-lg leading-relaxed group-hover:text-secondary transition-colors">
+            <p className="text-foreground/70 text-xl md:text-2xl leading-relaxed group-hover:text-secondary transition-colors">
               <span className="ar-content">
                 تقييم السوق والجدوى، تعريف المفهوم الفني، وتحديد المخاطر المبكرة لضمان واقعية الفكرة.
               </span>
@@ -47,11 +47,11 @@ export default function MethodologySection() {
             <span className="text-5xl font-bold text-secondary/30 block mb-6 group-hover:text-white/10 font-mono transition-colors">
               02
             </span>
-            <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-white transition-colors font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-white transition-colors font-display">
               <span className="ar-content">المحاكاة والتحسين</span>
               <span className="en-content">Simulation</span>
             </h3>
-            <p className="text-foreground/70 text-lg leading-relaxed group-hover:text-secondary transition-colors">
+            <p className="text-foreground/70 text-xl md:text-2xl leading-relaxed group-hover:text-secondary transition-colors">
               <span className="ar-content">
                 هندسة ونمذجة الأنظمة، اختبار السيناريوهات، وتحليل المفاضلات القائمة على البيانات.
               </span>
@@ -66,11 +66,11 @@ export default function MethodologySection() {
             <span className="text-5xl font-bold text-secondary/30 block mb-6 group-hover:text-white/10 font-mono transition-colors">
               03
             </span>
-            <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-white transition-colors font-display">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-white transition-colors font-display">
               <span className="ar-content">التطوير والتجهيز</span>
               <span className="en-content">Preparation</span>
             </h3>
-            <p className="text-foreground/70 text-lg leading-relaxed group-hover:text-secondary transition-colors">
+            <p className="text-foreground/70 text-xl md:text-2xl leading-relaxed group-hover:text-secondary transition-colors">
               <span className="ar-content">
                 تكامل التقنيات، إعداد خرائط طريق التنفيذ، وتجهيز الوثائق الجاهزة للاستثمار.
               </span>
