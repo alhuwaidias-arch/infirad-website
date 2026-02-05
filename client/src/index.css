@@ -3,11 +3,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Neo-Brutalist Engineering Precision Design System
+ * Movement: Neo-Brutalism meets Swiss Engineering
+ * Core: Raw honesty, extreme typography contrasts, geometric precision
+ * Color: Deep navy (#023047), stark white, industrial gray (#8D99AE)
+ * Layout: Asymmetric grids inspired by engineering schematics
+ */
+
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -43,83 +50,88 @@
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
+  /* INFIRAD Brand Colors - Neo-Brutalist Engineering */
+  --primary: oklch(0.25 0.08 240);      /* Deep Navy #023047 */
+  --primary-foreground: oklch(0.98 0 0); /* White */
+  --secondary: oklch(0.65 0.02 240);    /* Industrial Gray #8D99AE */
+  --secondary-foreground: oklch(0.25 0.08 240);
+  --accent: oklch(0.92 0.01 240);       /* Off-White #EDF2F4 */
+  --accent-foreground: oklch(0.25 0.08 240);
+  
+  --background: oklch(0.98 0 0);        /* White */
+  --foreground: oklch(0.25 0.08 240);   /* Deep Navy */
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.25 0.08 240);
+  --popover: oklch(0.98 0 0);
+  --popover-foreground: oklch(0.25 0.08 240);
+  --muted: oklch(0.92 0.01 240);
+  --muted-foreground: oklch(0.55 0.02 240);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
+  --border: oklch(0.85 0.01 240);
+  --input: oklch(0.85 0.01 240);
+  --ring: oklch(0.25 0.08 240);
+  
+  --chart-1: oklch(0.45 0.08 240);
+  --chart-2: oklch(0.55 0.06 240);
+  --chart-3: oklch(0.65 0.04 240);
+  --chart-4: oklch(0.75 0.02 240);
+  --chart-5: oklch(0.85 0.01 240);
+  
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.25 0.08 240);
+  --sidebar-primary: oklch(0.25 0.08 240);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.92 0.01 240);
+  --sidebar-accent-foreground: oklch(0.25 0.08 240);
+  --sidebar-border: oklch(0.85 0.01 240);
+  --sidebar-ring: oklch(0.25 0.08 240);
+  
+  --radius: 6px;
+  
+  /* Typography Scale - Extreme Contrasts */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 .dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  --primary: oklch(0.25 0.08 240);
+  --primary-foreground: oklch(0.98 0 0);
+  --background: oklch(0.15 0.02 240);
+  --foreground: oklch(0.92 0.01 240);
+  --card: oklch(0.20 0.03 240);
+  --card-foreground: oklch(0.92 0.01 240);
+  --popover: oklch(0.20 0.03 240);
+  --popover-foreground: oklch(0.92 0.01 240);
+  --secondary: oklch(0.30 0.04 240);
+  --secondary-foreground: oklch(0.92 0.01 240);
+  --muted: oklch(0.25 0.03 240);
+  --muted-foreground: oklch(0.65 0.02 240);
+  --accent: oklch(0.30 0.04 240);
+  --accent-foreground: oklch(0.92 0.01 240);
+  --border: oklch(0.30 0.04 240);
+  --input: oklch(0.30 0.04 240);
+  --ring: oklch(0.65 0.02 240);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -134,24 +146,11 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -162,16 +161,84 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
+  }
+  
+  /* Neo-Brutalist Custom Components */
+  .technical-grid {
+    background-image: 
+      linear-gradient(to right, oklch(0.25 0.08 240 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.25 0.08 240 / 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  
+  .diagonal-cut {
+    clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%);
+  }
+  
+  .diagonal-cut-reverse {
+    clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .font-display {
+    font-family: var(--font-display);
+  }
+  
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  
+  /* Language Toggle Classes */
+  .en-content { 
+    display: none; 
+  }
+  
+  .lang-en .en-content { 
+    display: inline; 
+  }
+  
+  .lang-en div.en-content, 
+  .lang-en p.en-content, 
+  .lang-en section.en-content, 
+  .lang-en h1.en-content, 
+  .lang-en h2.en-content, 
+  .lang-en h3.en-content,
+  .lang-en span.en-content { 
+    display: block; 
+  }
+  
+  .lang-en .ar-content { 
+    display: none; 
+  }
+  
+  /* Force LTR for phone numbers */
+  .phone-number {
+    direction: ltr !important;
+    display: inline-block;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities for Neo-Brutalist interactions */
+  .transition-brutal {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
   }
 }
