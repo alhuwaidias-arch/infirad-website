@@ -241,4 +241,26 @@
   .hover-scale:hover {
     transform: scale(1.02);
   }
+  
+  /* Graph line animations */
+  @keyframes drawLine {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes waveLine {
+    0%, 100% {
+      d: path('M40 140 Q 70 60, 100 110 T 160 80');
+    }
+    25% {
+      d: path('M40 135 Q 70 65, 100 105 T 160 85');
+    }
+    50% {
+      d: path('M40 145 Q 70 55, 100 115 T 160 75');
+    }
+    75% {
+      d: path('M40 138 Q 70 62, 100 108 T 160 82');
+    }
+  }
 }

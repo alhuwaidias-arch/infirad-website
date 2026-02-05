@@ -101,12 +101,31 @@ export default function HeroSection() {
 
               {/* Technical Visualization */}
               <svg viewBox="0 0 200 200" className="w-3/4 h-3/4 text-secondary/30">
+                <defs>
+                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="white" stopOpacity="0.3" />
+                    <stop offset="50%" stopColor="white" stopOpacity="1" />
+                    <stop offset="100%" stopColor="white" stopOpacity="0.3" />
+                  </linearGradient>
+                </defs>
                 <path d="M40 40 H160 M40 70 H160 M40 100 H160 M40 130 H160 M40 160 H160" stroke="currentColor" strokeWidth="0.5" />
                 <path d="M40 40 V160 M70 40 V160 M100 40 V160 M130 40 V160 M160 40 V160" stroke="currentColor" strokeWidth="0.5" />
-                <path d="M40 140 Q 70 60, 100 110 T 160 80" fill="none" stroke="white" strokeWidth="2" className="animate-pulse" />
-                <circle cx="70" cy="85" r="4" fill="currentColor" />
-                <circle cx="100" cy="110" r="4" fill="currentColor" />
-                <circle cx="130" cy="95" r="4" fill="currentColor" />
+                <path 
+                  d="M40 140 Q 70 60, 100 110 T 160 80" 
+                  fill="none" 
+                  stroke="url(#lineGradient)" 
+                  strokeWidth="3" 
+                  strokeLinecap="round"
+                  className="graph-line"
+                  style={{
+                    strokeDasharray: '300',
+                    strokeDashoffset: '300',
+                    animation: 'drawLine 2s ease-out forwards, waveLine 3s ease-in-out 2s infinite'
+                  }}
+                />
+                <circle cx="70" cy="85" r="4" fill="currentColor" className="animate-pulse" style={{ animationDelay: '2s' }} />
+                <circle cx="100" cy="110" r="4" fill="currentColor" className="animate-pulse" style={{ animationDelay: '2.2s' }} />
+                <circle cx="130" cy="95" r="4" fill="currentColor" className="animate-pulse" style={{ animationDelay: '2.4s' }} />
               </svg>
 
               <div className="ar-content absolute bottom-8 px-5 py-2 border-2 border-secondary/30 rounded text-secondary text-xs md:text-sm font-bold uppercase font-display">
