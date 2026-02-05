@@ -43,15 +43,15 @@ export default function AboutSection() {
           
           {/* Visual Element */}
           <div className="relative animate-fade-in">
-            <div className="aspect-video bg-primary rounded-2xl shadow-xl flex items-center justify-center p-12 relative overflow-hidden border-2 border-secondary/20">
+            <div className="aspect-video bg-primary rounded-2xl shadow-xl flex items-center justify-center p-8 sm:p-12 relative overflow-hidden border-2 border-secondary/20">
               <div className="absolute inset-0 bg-secondary/5" />
-              <div className="text-center relative z-10 space-y-6">
+              <div className="text-center relative z-10 space-y-6 px-4">
                 <ShieldCheck className="w-16 h-16 text-secondary mx-auto" />
-                <h4 className="text-xl font-bold text-white uppercase tracking-widest font-display">
+                <h4 className="text-lg sm:text-xl font-bold text-white uppercase tracking-wide sm:tracking-widest font-display leading-relaxed">
                   <span className="ar-content">شريك هندسي استراتيجي</span>
                   <span className="en-content">Strategic Technical Partner</span>
                 </h4>
-                <p className="text-lg md:text-xl text-secondary tracking-widest">
+                <p className="text-base sm:text-lg md:text-xl text-secondary tracking-wide sm:tracking-widest leading-relaxed">
                   <span className="ar-content">تحقيق اليقين في المشاريع النوعية</span>
                   <span className="en-content">Building Certainty in Flagship Projects</span>
                 </p>
