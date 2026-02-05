@@ -32,10 +32,10 @@ export default function HeroSection() {
         <div className="space-y-8 animate-fade-in-up">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-primary/50 border-2 border-secondary/30 text-secondary backdrop-blur-sm">
-            <span className="ar-content text-base md:text-lg font-bold tracking-wider uppercase font-display">
+            <span className="ar-content text-lg md:text-2xl font-bold tracking-wider uppercase font-display">
               انفِراد - شريك هندسي استراتيجي لتطوير المشاريع
             </span>
-            <span className="en-content text-base md:text-lg font-bold tracking-wider uppercase font-display">
+            <span className="en-content text-lg md:text-2xl font-bold tracking-wider uppercase font-display">
               INFIRAD - Strategic Venture-Engineering Partner
             </span>
           </div>
@@ -51,7 +51,7 @@ export default function HeroSection() {
           </h1>
           
           {/* Description */}
-          <p className="text-xl text-white max-w-xl leading-relaxed">
+          <p className="text-2xl md:text-3xl text-white max-w-xl leading-relaxed font-medium">
             <span className="ar-content">
               شركة تطوير مشاريع تعمل كشريك تقني لتحويل الأفكار النوعية إلى مشاريع قابلة للتنفيذ وجاهزة للاستثمار.
             </span>
@@ -67,8 +67,8 @@ export default function HeroSection() {
               size="lg"
               className="bg-secondary hover:bg-white text-primary font-bold transition-brutal hover-lift shadow-lg"
             >
-              <a href="https://wa.me/966530151525" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg">
-                <MessageCircle className="w-6 h-6" />
+              <a href="https://wa.me/966530151525" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-xl">
+                <MessageCircle className="w-7 h-7" />
                 <span className="ar-content">واتساب</span>
                 <span className="en-content">WhatsApp</span>
               </a>
@@ -79,8 +79,8 @@ export default function HeroSection() {
               size="lg"
               className="bg-transparent border-2 border-secondary/30 hover:bg-white/5 text-white font-bold transition-brutal hover-lift"
             >
-              <a href="mailto:info@infiradeng.com" className="flex items-center gap-2 text-lg">
-                <Mail className="w-6 h-6 text-secondary" />
+              <a href="mailto:info@infiradeng.com" className="flex items-center gap-3 text-xl">
+                <Mail className="w-7 h-7 text-secondary" />
                 <span className="ar-content">البريد الإلكتروني</span>
                 <span className="en-content">Email Us</span>
               </a>

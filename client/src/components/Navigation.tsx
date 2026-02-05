@@ -50,7 +50,7 @@ export default function Navigation() {
         <div className="hidden md:flex items-center gap-8">
           <button 
             onClick={() => scrollToSection('about')}
-            className={`text-base font-bold hover:text-secondary transition-colors font-display ${
+            className={`text-xl font-bold hover:text-secondary transition-colors font-display ${
               isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
             }`}
           >
@@ -59,7 +59,7 @@ export default function Navigation() {
           </button>
           <button 
             onClick={() => scrollToSection('methodology')}
-            className={`text-base font-bold hover:text-secondary transition-colors font-display ${
+            className={`text-xl font-bold hover:text-secondary transition-colors font-display ${
               isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
             }`}
           >
@@ -68,7 +68,7 @@ export default function Navigation() {
           </button>
           <button 
             onClick={() => scrollToSection('capabilities')}
-            className={`text-base font-bold hover:text-secondary transition-colors font-display ${
+            className={`text-xl font-bold hover:text-secondary transition-colors font-display ${
               isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
             }`}
           >
@@ -77,7 +77,7 @@ export default function Navigation() {
           </button>
           <button 
             onClick={() => scrollToSection('engagement')}
-            className={`text-base font-bold hover:text-secondary transition-colors font-display ${
+            className={`text-xl font-bold hover:text-secondary transition-colors font-display ${
               isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
             }`}
           >
@@ -95,8 +95,8 @@ export default function Navigation() {
                 : 'bg-white/10 text-white border-white/30 hover:bg-white hover:text-primary backdrop-blur-sm'
             }`}
           >
-            <Globe className="w-5 h-5" />
-            <span className="text-sm font-bold">
+            <Globe className="w-6 h-6" />
+            <span className="text-lg font-bold">
               {language === 'ar' ? 'English' : 'العربية'}
             </span>
           </Button>
