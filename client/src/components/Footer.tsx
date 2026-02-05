@@ -14,7 +14,7 @@ export default function Footer() {
             />
           </div>
           
-          <p className="text-foreground text-base leading-relaxed max-w-sm">
+          <p className="text-foreground text-lg md:text-xl leading-relaxed max-w-sm">
             <span className="ar-content">
               الشريك الهندسي الاستراتيجي لتطوير المشاريع النوعية في المملكة العربية السعودية.
             </span>
@@ -30,12 +30,12 @@ export default function Footer() {
             <span className="ar-content">تواصل معنا</span>
             <span className="en-content">Contact</span>
           </h4>
-          <div className="space-y-3 text-foreground/80 text-sm">
+          <div className="space-y-3 text-foreground/80 text-lg">
             <a 
               href="mailto:info@infiradeng.com" 
               className="flex items-center gap-2 hover:text-secondary transition-colors"
             >
-              <Mail className="w-4 h-4" /> 
+              <Mail className="w-5 h-5" /> 
               info@infiradeng.com
             </a>
             <a 
@@ -44,7 +44,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-secondary transition-colors"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-5 h-5" />
               <span className="phone-number">+966 530 151 525</span>
             </a>
           </div>
@@ -56,8 +56,8 @@ export default function Footer() {
             <span className="ar-content">المقر</span>
             <span className="en-content">Location</span>
           </h4>
-          <p className="text-foreground/80 text-sm flex items-start gap-2">
-            <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
+          <p className="text-foreground/80 text-lg flex items-start gap-2">
+            <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
             <span>
               <span className="ar-content">الرياض، المملكة العربية السعودية</span>
               <span className="en-content">Riyadh, Saudi Arabia</span>
@@ -68,7 +68,7 @@ export default function Footer() {
       
       {/* Copyright */}
       <div className="container mx-auto px-6 mt-20 pt-8 border-t-2 border-border text-center">
-        <p className="text-xs text-secondary uppercase tracking-widest font-mono">
+        <p className="text-base text-secondary uppercase tracking-widest font-mono">
           &copy; 2026 INFIRAD. From Idea to Certainty.
         </p>
       </div>

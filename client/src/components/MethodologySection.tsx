@@ -32,7 +32,7 @@ export default function MethodologySection() {
               <span className="ar-content">التصور والتحقق</span>
               <span className="en-content">Validation</span>
             </h3>
-            <p className="text-foreground/70 text-sm leading-relaxed group-hover:text-secondary transition-colors">
+            <p className="text-foreground/70 text-lg leading-relaxed group-hover:text-secondary transition-colors">
               <span className="ar-content">
                 تقييم السوق والجدوى، تعريف المفهوم الفني، وتحديد المخاطر المبكرة لضمان واقعية الفكرة.
               </span>
@@ -51,7 +51,7 @@ export default function MethodologySection() {
               <span className="ar-content">المحاكاة والتحسين</span>
               <span className="en-content">Simulation</span>
             </h3>
-            <p className="text-foreground/70 text-sm leading-relaxed group-hover:text-secondary transition-colors">
+            <p className="text-foreground/70 text-lg leading-relaxed group-hover:text-secondary transition-colors">
               <span className="ar-content">
                 هندسة ونمذجة الأنظمة، اختبار السيناريوهات، وتحليل المفاضلات القائمة على البيانات.
               </span>
@@ -70,7 +70,7 @@ export default function MethodologySection() {
               <span className="ar-content">التطوير والتجهيز</span>
               <span className="en-content">Preparation</span>
             </h3>
-            <p className="text-foreground/70 text-sm leading-relaxed group-hover:text-secondary transition-colors">
+            <p className="text-foreground/70 text-lg leading-relaxed group-hover:text-secondary transition-colors">
               <span className="ar-content">
                 تكامل التقنيات، إعداد خرائط طريق التنفيذ، وتجهيز الوثائق الجاهزة للاستثمار.
               </span>

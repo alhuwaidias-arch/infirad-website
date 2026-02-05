@@ -18,7 +18,7 @@ export default function EngagementSection() {
             <span className="ar-content">نموذج الشراكة</span>
             <span className="en-content">Engagement Model</span>
           </h2>
-          <p className="text-secondary text-base md:text-lg max-w-2xl mx-auto font-medium">
+          <p className="text-secondary text-xl md:text-2xl max-w-2xl mx-auto font-medium">
             <span className="ar-content">
               نعمل وفق نموذجين مرنين يتناسبان مع احتياجات المشاريع الكبرى.
             </span>
@@ -36,7 +36,7 @@ export default function EngagementSection() {
               <span className="ar-content">التعاقدات الاستشارية</span>
               <span className="en-content">Consulting Engagements</span>
             </h3>
-            <p className="text-foreground/80 text-sm leading-relaxed">
+            <p className="text-foreground/80 text-lg leading-relaxed">
               <span className="ar-content">
                 دراسات فنية وتحليلية لدعم اتخاذ القرار، التحقق من الجدوى، وتقليل المخاطر.
               </span>
@@ -52,7 +52,7 @@ export default function EngagementSection() {
               <span className="ar-content">شراكات التطوير الاستراتيجية</span>
               <span className="en-content">Strategic Partnerships</span>
             </h3>
-            <p className="text-secondary text-sm leading-relaxed">
+            <p className="text-secondary text-lg leading-relaxed">
               <span className="ar-content">
                 تعمل انفِراد كعمود فقري تقني لمشروعك من مرحلة التصور وحتى الجاهزية للتنفيذ.
               </span>

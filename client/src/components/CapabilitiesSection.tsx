@@ -29,7 +29,7 @@ export default function CapabilitiesSection() {
               <span className="ar-content">الهندسة</span>
               <span className="en-content">Engineering</span>
             </h3>
-            <p className="text-secondary text-sm leading-relaxed font-semibold">
+            <p className="text-secondary text-lg leading-relaxed font-semibold">
               <span className="ar-content">
                 التصميم الأساسي (BFD/PFD)، مراجعة P&ID، والمحاكاة الديناميكية للعمليات.
               </span>
@@ -46,7 +46,7 @@ export default function CapabilitiesSection() {
               <span className="ar-content">التقنية والذكاء الاصطناعي</span>
               <span className="en-content">Tech & AI</span>
             </h3>
-            <p className="text-secondary text-sm leading-relaxed font-semibold">
+            <p className="text-secondary text-lg leading-relaxed font-semibold">
               <span className="ar-content">
                 وكلاء ذكاء اصطناعي لدعم اتخاذ القرارات الهندسية، وتحليل البيانات لرفع الكفاءة.
               </span>
@@ -63,7 +63,7 @@ export default function CapabilitiesSection() {
               <span className="ar-content">تطوير الأعمال</span>
               <span className="en-content">Venture Dev</span>
             </h3>
-            <p className="text-secondary text-sm leading-relaxed font-semibold">
+            <p className="text-secondary text-lg leading-relaxed font-semibold">
               <span className="ar-content">
                 هيكلة المشاريع، الحوكمة، ورفع الجاهزية الاستثمارية للأفكار المعقدة.
               </span>
@@ -80,7 +80,7 @@ export default function CapabilitiesSection() {
               <span className="ar-content">التعليم ونقل المعرفة</span>
               <span className="en-content">Education & Training</span>
             </h3>
-            <p className="text-secondary text-sm leading-relaxed font-semibold">
+            <p className="text-secondary text-lg leading-relaxed font-semibold">
               <span className="ar-content">
                 بناء الكفاءات الوطنية المتخصصة وتطوير المهارات التقنية في المجالات الهندسية المتقدمة.
               </span>

@@ -12,7 +12,7 @@ export default function AboutSection() {
               <span className="en-content">About INFIRAD</span>
             </h2>
             
-            <p className="text-lg text-foreground leading-relaxed font-medium">
+            <p className="text-xl md:text-2xl text-foreground leading-relaxed font-medium">
               <span className="ar-content">
                 تعمل انفِراد في تقاطع الهندسة والتكنولوجيا والأعمال، مع التركيز على المبادرات التي تتسم بعدم اليقين التقني وارتفاع مخاطر الأداء.
               </span>
@@ -25,7 +25,7 @@ export default function AboutSection() {
             <div className="grid grid-cols-2 gap-6 mt-10">
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-border hover-lift transition-brutal">
                 <h3 className="text-foreground font-bold text-4xl mb-2 font-mono">0%</h3>
-                <p className="text-xs uppercase tracking-wider text-secondary font-bold font-display">
+                <p className="text-base uppercase tracking-wider text-secondary font-bold font-display">
                   <span className="ar-content">تحيز للمقاولين</span>
                   <span className="en-content">Vendor Bias</span>
                 </p>
@@ -33,7 +33,7 @@ export default function AboutSection() {
               
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-border hover-lift transition-brutal">
                 <h3 className="text-foreground font-bold text-4xl mb-2 font-mono">100%</h3>
-                <p className="text-xs uppercase tracking-wider text-secondary font-bold font-display">
+                <p className="text-base uppercase tracking-wider text-secondary font-bold font-display">
                   <span className="ar-content">استقلالية القرار</span>
                   <span className="en-content">Decision Autonomy</span>
                 </p>
@@ -51,7 +51,7 @@ export default function AboutSection() {
                   <span className="ar-content">شريك هندسي استراتيجي</span>
                   <span className="en-content">Strategic Technical Partner</span>
                 </h4>
-                <p className="text-sm md:text-base text-secondary tracking-widest">
+                <p className="text-lg md:text-xl text-secondary tracking-widest">
                   <span className="ar-content">تحقيق اليقين في المشاريع النوعية</span>
                   <span className="en-content">Building Certainty in Flagship Projects</span>
                 </p>
