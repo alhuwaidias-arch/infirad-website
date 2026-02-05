@@ -37,9 +37,9 @@ export default function Navigation() {
         <div className="flex items-center">
           <a href="#" className="flex items-center">
             <img 
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/118103656/mQzhKltIIwOMzPqh.png" 
-              alt="INFIRAD Logo" 
-              className={`h-12 w-auto object-contain transition-all duration-300 drop-shadow-lg ${
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/118103656/YeAJuvDQmxUTBDzE.png" 
+              alt="INFIRAD Icon" 
+              className={`h-10 w-auto object-contain transition-all duration-300 drop-shadow-lg ${
                 isScrolled ? '' : 'brightness-0 invert'
               }`}
             />
