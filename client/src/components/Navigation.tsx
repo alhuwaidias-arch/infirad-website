@@ -29,7 +29,7 @@ export default function Navigation() {
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm' 
-          : 'bg-primary/95 backdrop-blur-md shadow-md'
+          : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
@@ -39,7 +39,7 @@ export default function Navigation() {
             <img 
               src="https://files.manuscdn.com/user_upload_by_module/session_file/118103656/mQzhKltIIwOMzPqh.png" 
               alt="INFIRAD Logo" 
-              className={`h-12 w-auto object-contain transition-all duration-300 ${
+              className={`h-12 w-auto object-contain transition-all duration-300 drop-shadow-lg ${
                 isScrolled ? '' : 'brightness-0 invert'
               }`}
             />
@@ -51,7 +51,7 @@ export default function Navigation() {
           <button 
             onClick={() => scrollToSection('about')}
             className={`text-sm font-bold hover:text-secondary transition-colors font-display ${
-              isScrolled ? 'text-foreground' : 'text-white'
+              isScrolled ? 'text-foreground' : 'text-white drop-shadow-lg'
             }`}
           >
             <span className="ar-content">من نحن</span>
@@ -60,7 +60,7 @@ export default function Navigation() {
           <button 
             onClick={() => scrollToSection('methodology')}
             className={`text-sm font-bold hover:text-secondary transition-colors font-display ${
-              isScrolled ? 'text-foreground' : 'text-white'
+              isScrolled ? 'text-foreground' : 'text-white drop-shadow-lg'
             }`}
           >
             <span className="ar-content">منهجيتنا</span>
@@ -69,7 +69,7 @@ export default function Navigation() {
           <button 
             onClick={() => scrollToSection('capabilities')}
             className={`text-sm font-bold hover:text-secondary transition-colors font-display ${
-              isScrolled ? 'text-foreground' : 'text-white'
+              isScrolled ? 'text-foreground' : 'text-white drop-shadow-lg'
             }`}
           >
             <span className="ar-content">القدرات</span>
@@ -78,7 +78,7 @@ export default function Navigation() {
           <button 
             onClick={() => scrollToSection('engagement')}
             className={`text-sm font-bold hover:text-secondary transition-colors font-display ${
-              isScrolled ? 'text-foreground' : 'text-white'
+              isScrolled ? 'text-foreground' : 'text-white drop-shadow-lg'
             }`}
           >
             <span className="ar-content">نموذج العمل</span>
@@ -89,10 +89,10 @@ export default function Navigation() {
             onClick={toggleLanguage}
             variant="outline"
             size="sm"
-            className={`flex items-center gap-2 font-bold border-2 transition-brutal ${
+            className={`flex items-center gap-2 font-bold border-2 transition-brutal drop-shadow-lg ${
               isScrolled 
                 ? 'hover:bg-primary hover:text-primary-foreground' 
-                : 'bg-white/10 text-white border-white/30 hover:bg-white hover:text-primary'
+                : 'bg-white/10 text-white border-white/30 hover:bg-white hover:text-primary backdrop-blur-sm'
             }`}
           >
             <Globe className="w-4 h-4" />
