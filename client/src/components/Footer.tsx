@@ -1,4 +1,4 @@
-import { Mail, MessageCircle, MapPin } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -46,6 +46,15 @@ export default function Footer() {
             >
               <MessageCircle className="w-5 h-5" />
               <span className="phone-number">+966 530 151 525</span>
+            </a>
+            <a 
+              href="https://www.linkedin.com/company/infirad/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-secondary transition-colors"
+            >
+              <Linkedin className="w-5 h-5" />
+              <span>LinkedIn</span>
             </a>
           </div>
         </div>
