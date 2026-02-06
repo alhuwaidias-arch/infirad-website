@@ -18,11 +18,20 @@ export default function ChatWidget() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [sessionId, setSessionId] = useState<string>('');
+  const [lastMessageCount, setLastMessageCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const { isArabic } = useLanguage();
 
   const createSession = trpc.telegram.createSession.useMutation();
   const sendMessage = trpc.telegram.sendMessage.useMutation();
+  const getHistory = trpc.telegram.getHistory.useQuery(
+    { session_id: sessionId },
+    { 
+      enabled: !!sessionId && isOpen,
+      refetchInterval: 2000, // Poll every 2 seconds for new messages
+    }
+  );
 
   useEffect(() => {
     // Initialize session when widget opens
@@ -30,6 +39,35 @@ export default function ChatWidget() {
       initializeSession();
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    // Update messages when history changes
+    if (getHistory.data && getHistory.data.messages.length > lastMessageCount) {
+      const newMessages = getHistory.data.messages.slice(lastMessageCount);
+      
+      newMessages.forEach((msg) => {
+        if (msg.from === 'telegram') {
+          // This is a reply from Telegram
+          const telegramMessage: Message = {
+            id: `telegram-${Date.now()}-${Math.random()}`,
+            text: msg.text,
+            isUser: false,
+            timestamp: new Date(msg.timestamp),
+          };
+          
+          setMessages(prev => {
+            // Avoid duplicates
+            if (prev.some(m => m.text === msg.text && !m.isUser)) {
+              return prev;
+            }
+            return [...prev, telegramMessage];
+          });
+        }
+      });
+      
+      setLastMessageCount(getHistory.data.messages.length);
+    }
+  }, [getHistory.data, lastMessageCount]);
 
   useEffect(() => {
     scrollToBottom();
@@ -48,12 +86,13 @@ export default function ChatWidget() {
       const greeting: Message = {
         id: '1',
         text: isArabic 
-          ? 'أهلاً بك. أنا "هادي"، وكيل التواصل الذكي لشركة انفِراد. سيتم توجيه رسالتك مباشرة إلى فريقنا عبر تيليجرام. كيف يمكنني مساعدتك؟'
-          : 'Hello. I am "Hadi", INFIRAD\'s smart communication agent. Your message will be forwarded directly to our team via Telegram. How can I help you?',
+          ? 'أهلاً بك. أنا "هادي"، وكيل التواصل لشركة انفِراد. كيف يمكنني مساعدتك؟'
+          : 'Hello. I am "Hadi", INFIRAD\'s communication agent. How can I help you?',
         isUser: false,
         timestamp: new Date(),
       };
       setMessages([greeting]);
+      setLastMessageCount(0);
     } catch (error) {
       console.error('Failed to initialize session:', error);
       const fallbackGreeting: Message = {
@@ -91,15 +130,23 @@ export default function ChatWidget() {
       });
 
       setIsTyping(false);
-      const confirmMessage: Message = {
+      
+      // Show "waiting for response" message
+      const waitingMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: isArabic
-          ? '✅ تم إرسال رسالتك إلى فريقنا. سنرد عليك في أقرب وقت ممكن.'
-          : '✅ Your message has been sent to our team. We will respond shortly.',
+          ? 'تم إرسال رسالتك. جاري الانتظار للرد...'
+          : 'Message sent. Waiting for response...',
         isUser: false,
         timestamp: new Date(),
       };
-      setMessages(prev => [...prev, confirmMessage]);
+      setMessages(prev => [...prev, waitingMessage]);
+      
+      // Remove waiting message after 3 seconds
+      setTimeout(() => {
+        setMessages(prev => prev.filter(m => m.id !== waitingMessage.id));
+      }, 3000);
+      
     } catch (error) {
       console.error('Failed to send message:', error);
       setIsTyping(false);
@@ -147,9 +194,10 @@ export default function ChatWidget() {
                   <span className="ar-content">هادي | انفِراد</span>
                   <span className="en-content">Hadi | INFIRAD</span>
                 </p>
-                <p className="text-[10px] text-secondary">
-                  <span className="ar-content">متصل عبر تيليجرام</span>
-                  <span className="en-content">Connected via Telegram</span>
+                <p className="text-[10px] text-secondary flex items-center gap-1">
+                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                  <span className="ar-content">متصل</span>
+                  <span className="en-content">Online</span>
                 </p>
               </div>
             </div>

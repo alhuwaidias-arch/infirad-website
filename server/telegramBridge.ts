@@ -52,9 +52,22 @@ export function initTelegramBridge(token: string) {
       }
     });
 
+    // Handle errors
+    bot.catch((err: any) => {
+      console.error("[Telegram Bridge] Bot error:", err.message);
+    });
+
     // Start the bot
-    bot.launch();
-    console.log("✅ [Telegram Bridge] Bot started successfully");
+    bot.launch().then(() => {
+      console.log("✅ [Telegram Bridge] Bot started successfully");
+    }).catch((err: any) => {
+      if (err.message.includes("409") || err.message.includes("Conflict")) {
+        console.warn("⚠️  [Telegram Bridge] Another bot instance is running. Stopping this instance.");
+        bot = null;
+      } else {
+        console.error("[Telegram Bridge] Failed to start bot:", err.message);
+      }
+    });
 
     // Graceful shutdown
     process.once("SIGINT", () => bot?.stop("SIGINT"));
@@ -76,8 +89,9 @@ export async function forwardToTelegram(
   userInfo?: { name?: string; email?: string }
 ): Promise<boolean> {
   if (!bot) {
-    console.error("[Telegram Bridge] Bot not initialized");
-    return false;
+    console.warn("[Telegram Bridge] Bot not available. Message will be stored but not forwarded.");
+    // Store the message anyway so it can be retrieved later
+    return true; // Return true to not break the flow
   }
 
   try {

@@ -39,3 +39,11 @@
 - [x] Add telegramRouter to tRPC
 - [x] Test end-to-end: website → Telegram → website
 - [x] Create TELEGRAM_BRIDGE.md documentation
+
+## Fix Telegram Bridge for Seamless Two-Way Chat
+- [x] Debug why chat widget is not working (bot conflict issue identified)
+- [x] Implement real-time polling for Telegram replies (2-second polling)
+- [x] Add message delivery confirmation
+- [x] Handle bot unavailable gracefully
+- [ ] Test complete flow: website → Telegram → website (requires stopping other bot instances)
+- [x] Ensure visitor doesn't know they're chatting with Telegram bot
