@@ -3,7 +3,7 @@ import { MessageSquare, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { createSession, sendMessage as sendMessageToAPI } from '@/services/hadiApi';
+import { trpc } from '@/lib/trpc';
 
 interface Message {
   id: string;
@@ -18,16 +18,18 @@ export default function ChatWidget() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [sessionId, setSessionId] = useState<string>('');
-  const [isInitialized, setIsInitialized] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { isArabic } = useLanguage();
 
+  const createSession = trpc.telegram.createSession.useMutation();
+  const sendMessage = trpc.telegram.sendMessage.useMutation();
+
   useEffect(() => {
     // Initialize session when widget opens
-    if (isOpen && !isInitialized) {
+    if (isOpen && !sessionId) {
       initializeSession();
     }
-  }, [isOpen, isInitialized]);
+  }, [isOpen]);
 
   useEffect(() => {
     scrollToBottom();
@@ -39,23 +41,21 @@ export default function ChatWidget() {
 
   const initializeSession = async () => {
     try {
-      const response = await createSession();
+      const response = await createSession.mutateAsync();
       setSessionId(response.session_id);
-      setIsInitialized(true);
 
       // Add initial greeting
       const greeting: Message = {
         id: '1',
         text: isArabic 
-          ? 'أهلاً بك. أنا "هادي"، وكيل التواصل الذكي لشركة انفِراد. هل تبحث عن شريك تقني لمشروعك القادم؟'
-          : 'Hello. I am "Hadi", INFIRAD\'s smart communication agent. Are you looking for a technical partner for your next project?',
+          ? 'أهلاً بك. أنا "هادي"، وكيل التواصل الذكي لشركة انفِراد. سيتم توجيه رسالتك مباشرة إلى فريقنا عبر تيليجرام. كيف يمكنني مساعدتك؟'
+          : 'Hello. I am "Hadi", INFIRAD\'s smart communication agent. Your message will be forwarded directly to our team via Telegram. How can I help you?',
         isUser: false,
         timestamp: new Date(),
       };
       setMessages([greeting]);
     } catch (error) {
       console.error('Failed to initialize session:', error);
-      // Fallback greeting if API fails
       const fallbackGreeting: Message = {
         id: '1',
         text: isArabic 
@@ -79,21 +79,27 @@ export default function ChatWidget() {
       timestamp: new Date(),
     };
     setMessages(prev => [...prev, userMessage]);
+    const messageText = inputValue;
     setInputValue('');
     setIsTyping(true);
 
     try {
-      // Send message to Hadi API
-      const response = await sendMessageToAPI(sessionId, userMessage.text);
+      // Send message to Telegram via tRPC
+      await sendMessage.mutateAsync({
+        session_id: sessionId,
+        message: messageText,
+      });
 
       setIsTyping(false);
-      const aiResponse: Message = {
+      const confirmMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: response.response,
+        text: isArabic
+          ? '✅ تم إرسال رسالتك إلى فريقنا. سنرد عليك في أقرب وقت ممكن.'
+          : '✅ Your message has been sent to our team. We will respond shortly.',
         isUser: false,
         timestamp: new Date(),
       };
-      setMessages(prev => [...prev, aiResponse]);
+      setMessages(prev => [...prev, confirmMessage]);
     } catch (error) {
       console.error('Failed to send message:', error);
       setIsTyping(false);
@@ -142,8 +148,8 @@ export default function ChatWidget() {
                   <span className="en-content">Hadi | INFIRAD</span>
                 </p>
                 <p className="text-[10px] text-secondary">
-                  <span className="ar-content">مرحباً بك في عالم اليقين</span>
-                  <span className="en-content">Welcome to the world of certainty</span>
+                  <span className="ar-content">متصل عبر تيليجرام</span>
+                  <span className="en-content">Connected via Telegram</span>
                 </p>
               </div>
             </div>
@@ -176,8 +182,8 @@ export default function ChatWidget() {
             {isTyping && (
               <div className="flex justify-start">
                 <div className="bg-accent text-foreground p-3 rounded-2xl rounded-tl-none text-xs animate-pulse border-2 border-border">
-                  <span className="ar-content">جاري التحليل...</span>
-                  <span className="en-content">Analyzing...</span>
+                  <span className="ar-content">جاري الإرسال...</span>
+                  <span className="en-content">Sending...</span>
                 </div>
               </div>
             )}
@@ -191,7 +197,7 @@ export default function ChatWidget() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder={isArabic ? 'اكتب استفسارك هنا...' : 'Type your query here...'}
+              placeholder={isArabic ? 'اكتب رسالتك هنا...' : 'Type your message here...'}
               className="flex-1 bg-white border-2 border-border text-xs"
               disabled={!sessionId}
             />

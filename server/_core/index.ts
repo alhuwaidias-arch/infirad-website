@@ -11,6 +11,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { initTelegramBridge } from "../telegramBridge";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -65,6 +66,14 @@ async function startServer() {
   // Start Hadi Python API subprocess
   if (process.env.NODE_ENV !== "test") {
     startHadiAPI();
+  }
+
+  // Initialize Telegram Bridge
+  const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
+  if (telegramToken) {
+    initTelegramBridge(telegramToken);
+  } else {
+    console.warn("⚠️  [Telegram Bridge] TELEGRAM_BOT_TOKEN not found. Telegram bridge disabled.");
   }
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));

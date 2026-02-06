@@ -30,3 +30,12 @@
 - [x] Update Python paths to use relative paths
 - [x] Create HADI_INTEGRATION.md documentation
 - [x] Add install:hadi script to package.json
+
+## Telegram Bridge Integration
+- [x] Create Telegram bridge service for website chat
+- [x] Add API endpoints for bidirectional messaging
+- [x] Update ChatWidget to use Telegram bridge mode
+- [x] Initialize Telegram bot in server startup
+- [x] Add telegramRouter to tRPC
+- [x] Test end-to-end: website → Telegram → website
+- [x] Create TELEGRAM_BRIDGE.md documentation
