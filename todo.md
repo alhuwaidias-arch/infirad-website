@@ -47,3 +47,15 @@
 - [x] Handle bot unavailable gracefully
 - [ ] Test complete flow: website → Telegram → website (requires stopping other bot instances)
 - [x] Ensure visitor doesn't know they're chatting with Telegram bot
+
+## Direct Telegram Bot API Integration (Zero Hosting)
+- [x] Implement hadiApi.ts with direct Telegram Bot API calls
+- [x] Add [WEB:session_id] protocol for message formatting
+- [x] Implement polling mechanism for bot responses
+- [x] Update ChatWidget to use new direct API service
+- [x] Add VITE_TELEGRAM_BOT_TOKEN environment variable
+- [x] Add VITE_WEB_CHAT_ID environment variable
+- [x] Add RTL support for Arabic messages in chat
+- [x] Write vitest test to validate Telegram Bot API connection
+- [x] Create comprehensive documentation (TELEGRAM_DIRECT_API.md)
+- [ ] Test with local Hadi bot running on PC

@@ -3,7 +3,7 @@ import { MessageSquare, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { trpc } from '@/lib/trpc';
+import { hadiApi } from '@/services/hadiApi';
 
 interface Message {
   id: string;
@@ -18,20 +18,8 @@ export default function ChatWidget() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [sessionId, setSessionId] = useState<string>('');
-  const [lastMessageCount, setLastMessageCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const { isArabic } = useLanguage();
-
-  const createSession = trpc.telegram.createSession.useMutation();
-  const sendMessage = trpc.telegram.sendMessage.useMutation();
-  const getHistory = trpc.telegram.getHistory.useQuery(
-    { session_id: sessionId },
-    { 
-      enabled: !!sessionId && isOpen,
-      refetchInterval: 2000, // Poll every 2 seconds for new messages
-    }
-  );
 
   useEffect(() => {
     // Initialize session when widget opens
@@ -39,35 +27,6 @@ export default function ChatWidget() {
       initializeSession();
     }
   }, [isOpen]);
-
-  useEffect(() => {
-    // Update messages when history changes
-    if (getHistory.data && getHistory.data.messages.length > lastMessageCount) {
-      const newMessages = getHistory.data.messages.slice(lastMessageCount);
-      
-      newMessages.forEach((msg) => {
-        if (msg.from === 'telegram') {
-          // This is a reply from Telegram
-          const telegramMessage: Message = {
-            id: `telegram-${Date.now()}-${Math.random()}`,
-            text: msg.text,
-            isUser: false,
-            timestamp: new Date(msg.timestamp),
-          };
-          
-          setMessages(prev => {
-            // Avoid duplicates
-            if (prev.some(m => m.text === msg.text && !m.isUser)) {
-              return prev;
-            }
-            return [...prev, telegramMessage];
-          });
-        }
-      });
-      
-      setLastMessageCount(getHistory.data.messages.length);
-    }
-  }, [getHistory.data, lastMessageCount]);
 
   useEffect(() => {
     scrollToBottom();
@@ -79,27 +38,26 @@ export default function ChatWidget() {
 
   const initializeSession = async () => {
     try {
-      const response = await createSession.mutateAsync();
+      const response = await hadiApi.createSession();
       setSessionId(response.session_id);
 
       // Add initial greeting
       const greeting: Message = {
         id: '1',
         text: isArabic 
-          ? 'أهلاً بك. أنا "هادي"، وكيل التواصل لشركة انفِراد. كيف يمكنني مساعدتك؟'
-          : 'Hello. I am "Hadi", INFIRAD\'s communication agent. How can I help you?',
+          ? 'أهلاً بك. أنا "هادي"، وكيل التواصل الذكي لشركة انفِراد. كيف يمكنني مساعدتك؟'
+          : 'Hello. I am "Hadi", INFIRAD\'s smart communication agent. How can I help you?',
         isUser: false,
         timestamp: new Date(),
       };
       setMessages([greeting]);
-      setLastMessageCount(0);
     } catch (error) {
       console.error('Failed to initialize session:', error);
       const fallbackGreeting: Message = {
         id: '1',
         text: isArabic 
-          ? 'عذراً، حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى لاحقاً.'
-          : 'Sorry, there was a connection error. Please try again later.',
+          ? 'عذراً، حدث خطأ في الاتصال. تأكد من تشغيل بوت Hadi على جهازك.'
+          : 'Sorry, connection error. Make sure Hadi bot is running on your PC.',
         isUser: false,
         timestamp: new Date(),
       };
@@ -123,29 +81,19 @@ export default function ChatWidget() {
     setIsTyping(true);
 
     try {
-      // Send message to Telegram via tRPC
-      await sendMessage.mutateAsync({
-        session_id: sessionId,
-        message: messageText,
-      });
+      // Send message to Hadi via Telegram Bot API
+      const response = await hadiApi.sendMessage(sessionId, messageText);
 
       setIsTyping(false);
       
-      // Show "waiting for response" message
-      const waitingMessage: Message = {
+      // Add Hadi's response
+      const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: isArabic
-          ? 'تم إرسال رسالتك. جاري الانتظار للرد...'
-          : 'Message sent. Waiting for response...',
+        text: response.response,
         isUser: false,
         timestamp: new Date(),
       };
-      setMessages(prev => [...prev, waitingMessage]);
-      
-      // Remove waiting message after 3 seconds
-      setTimeout(() => {
-        setMessages(prev => prev.filter(m => m.id !== waitingMessage.id));
-      }, 3000);
+      setMessages(prev => [...prev, botMessage]);
       
     } catch (error) {
       console.error('Failed to send message:', error);
@@ -217,11 +165,15 @@ export default function ChatWidget() {
                 className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[85%] p-3 rounded-2xl text-xs ${
+                  className={`max-w-[85%] p-3 rounded-2xl text-xs whitespace-pre-wrap ${
                     message.isUser
                       ? 'bg-primary text-white rounded-tr-none'
                       : 'bg-accent text-foreground rounded-tl-none border-2 border-border'
                   }`}
+                  style={{
+                    direction: message.text.match(/[\u0600-\u06FF]/) ? 'rtl' : 'ltr',
+                    textAlign: message.text.match(/[\u0600-\u06FF]/) ? 'right' : 'left'
+                  }}
                 >
                   {message.text}
                 </div>
@@ -230,8 +182,8 @@ export default function ChatWidget() {
             {isTyping && (
               <div className="flex justify-start">
                 <div className="bg-accent text-foreground p-3 rounded-2xl rounded-tl-none text-xs animate-pulse border-2 border-border">
-                  <span className="ar-content">جاري الإرسال...</span>
-                  <span className="en-content">Sending...</span>
+                  <span className="ar-content">جاري الكتابة...</span>
+                  <span className="en-content">Typing...</span>
                 </div>
               </div>
             )}
