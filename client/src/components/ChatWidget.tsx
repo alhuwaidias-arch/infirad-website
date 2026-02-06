@@ -3,6 +3,7 @@ import { MessageSquare, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { createSession, sendMessage as sendMessageToAPI } from '@/services/hadiApi';
 
 interface Message {
   id: string;
@@ -16,23 +17,17 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId, setSessionId] = useState<string>('');
+  const [isInitialized, setIsInitialized] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { isArabic } = useLanguage();
 
   useEffect(() => {
-    // Initial greeting message
-    if (messages.length === 0) {
-      const greeting: Message = {
-        id: '1',
-        text: isArabic 
-          ? 'أهلاً بك. أنا "هادي"، وكيل التواصل الذكي لشركة انفِراد. هل تبحث عن شريك تقني لمشروعك القادم؟'
-          : 'Hello. I am "Hadi", INFIRAD\'s smart communication agent. Are you looking for a technical partner for your next project?',
-        isUser: false,
-        timestamp: new Date(),
-      };
-      setMessages([greeting]);
+    // Initialize session when widget opens
+    if (isOpen && !isInitialized) {
+      initializeSession();
     }
-  }, []);
+  }, [isOpen, isInitialized]);
 
   useEffect(() => {
     scrollToBottom();
@@ -42,8 +37,39 @@ export default function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSend = () => {
-    if (!inputValue.trim()) return;
+  const initializeSession = async () => {
+    try {
+      const response = await createSession();
+      setSessionId(response.session_id);
+      setIsInitialized(true);
+
+      // Add initial greeting
+      const greeting: Message = {
+        id: '1',
+        text: isArabic 
+          ? 'أهلاً بك. أنا "هادي"، وكيل التواصل الذكي لشركة انفِراد. هل تبحث عن شريك تقني لمشروعك القادم؟'
+          : 'Hello. I am "Hadi", INFIRAD\'s smart communication agent. Are you looking for a technical partner for your next project?',
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages([greeting]);
+    } catch (error) {
+      console.error('Failed to initialize session:', error);
+      // Fallback greeting if API fails
+      const fallbackGreeting: Message = {
+        id: '1',
+        text: isArabic 
+          ? 'عذراً، حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى لاحقاً.'
+          : 'Sorry, there was a connection error. Please try again later.',
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages([fallbackGreeting]);
+    }
+  };
+
+  const handleSend = async () => {
+    if (!inputValue.trim() || !sessionId) return;
 
     // Add user message
     const userMessage: Message = {
@@ -56,19 +82,31 @@ export default function ChatWidget() {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      // Send message to Hadi API
+      const response = await sendMessageToAPI(sessionId, userMessage.text);
+
       setIsTyping(false);
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: isArabic
-          ? 'شكراً لتواصلك. لقد تم استلام طلبك وتصنيفه كـ "أولوية هندسية". سيقوم مدير مشاريعنا بالتواصل معك عبر البيانات المسجلة لدينا.'
-          : 'Thank you for reaching out. Your request has been received and categorized as an "Engineering Priority". Our project manager will contact you via the details provided.',
+        text: response.response,
         isUser: false,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, aiResponse]);
-    }, 1500);
+    } catch (error) {
+      console.error('Failed to send message:', error);
+      setIsTyping(false);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: isArabic
+          ? 'عذراً، حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى.'
+          : 'Sorry, there was an error sending your message. Please try again.',
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -155,11 +193,13 @@ export default function ChatWidget() {
               onKeyPress={handleKeyPress}
               placeholder={isArabic ? 'اكتب استفسارك هنا...' : 'Type your query here...'}
               className="flex-1 bg-white border-2 border-border text-xs"
+              disabled={!sessionId}
             />
             <Button 
               onClick={handleSend}
               size="sm"
               className="bg-primary text-white hover:bg-primary/90"
+              disabled={!sessionId || !inputValue.trim()}
             >
               <Send className="w-4 h-4" />
             </Button>
