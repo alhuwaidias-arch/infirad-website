@@ -1,11 +1,28 @@
 import { MessageCircle, Mail, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 export default function HeroSection() {
   const scrollToNext = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleEmailClick = async () => {
+    const email = 'info@infiradeng.com';
+    try {
+      await navigator.clipboard.writeText(email);
+      toast.success('Email copied to clipboard!', {
+        description: 'You can now paste it into your email client.',
+        duration: 4000,
+      });
+    } catch (err) {
+      console.error('Failed to copy:', err);
+      toast.error('Failed to copy email', {
+        description: 'Please copy manually: info@infiradeng.com',
+      });
     }
   };
 
@@ -73,17 +90,15 @@ export default function HeroSection() {
                 <span className="en-content">WhatsApp</span>
               </a>
             </Button>
-            <Button 
-              asChild
+            <Button
               variant="outline"
               size="lg"
-              className="bg-transparent border-2 border-secondary/30 hover:bg-white/5 text-white font-bold transition-brutal hover-lift"
+              className="bg-transparent border-2 border-secondary/30 hover:bg-white/5 text-white font-bold transition-brutal hover-lift flex items-center gap-3 text-xl"
+              onClick={handleEmailClick}
             >
-              <a href="mailto:info@infiradeng.com" className="flex items-center gap-3 text-xl">
-                <Mail className="w-7 h-7 text-secondary" />
-                <span className="ar-content">البريد الإلكتروني</span>
-                <span className="en-content">Email Us</span>
-              </a>
+              <Mail className="w-7 h-7 text-secondary" />
+              <span className="ar-content">البريد الإلكتروني</span>
+              <span className="en-content">Email Us</span>
             </Button>
           </div>
         </div>
