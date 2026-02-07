@@ -5,7 +5,6 @@ import MethodologySection from '@/components/MethodologySection';
 import CapabilitiesSection from '@/components/CapabilitiesSection';
 import EngagementSection from '@/components/EngagementSection';
 import Footer from '@/components/Footer';
-import ChatWidget from '@/components/ChatWidget';
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
         <EngagementSection />
         <Footer />
       </main>
-      <ChatWidget />
     </div>
   );
 }
