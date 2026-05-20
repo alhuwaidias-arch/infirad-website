@@ -7,9 +7,9 @@ export default function Footer() {
         {/* Brand */}
         <div className="lg:col-span-2 space-y-6">
           <div className="flex items-center gap-3">
-            <img 
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/118103656/mQzhKltIIwOMzPqh.png" 
-              alt="INFIRAD Logo" 
+            <img
+              src="/logo_ar_en_T.PNG"
+              alt="INFIRAD Logo"
               className="h-12 w-auto object-contain"
             />
           </div>
