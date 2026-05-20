@@ -36,12 +36,10 @@ export default function Navigation() {
         {/* Logo */}
         <div className="flex items-center">
           <a href="#" className="flex items-center">
-            <img 
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/118103656/mQzhKltIIwOMzPqh.png" 
-              alt="INFIRAD Logo" 
-              className={`h-12 w-auto object-contain transition-all duration-300 drop-shadow-lg ${
-                isScrolled ? '' : 'brightness-0 invert'
-              }`}
+            <img
+              src={isScrolled ? "/logo_ar_en_T.PNG" : "/logo_ar_en_GT.PNG"}
+              alt="INFIRAD Logo"
+              className="h-12 w-auto object-contain transition-all duration-300 drop-shadow-lg"
             />
           </a>
         </div>
